@@ -6,8 +6,6 @@ import {
   FileText,
   MoreHorizontal,
   Plus,
-  LoaderCircle,
-  MessageSquare,
   BookOpen,
   X,
 } from "lucide-react";
@@ -35,6 +33,7 @@ import {
   SelectContent,
   SelectItem,
 } from "../../../../src/ui/select";
+import { SelectionBar } from "../../../../src/ui/selection-bar";
 import { Checkbox } from "../../../../src/ui/checkbox";
 import { Switch } from "../../../../src/ui/switch";
 import { Toggle } from "../../../../src/ui/toggle";
@@ -358,6 +357,8 @@ export default function UiDemo({ id }: { id: string }) {
           </p>
         </div>
       );
+    case "selection-bar":
+      return <SelectionDemo />;
     case "checkbox":
       return (
         <div className="space-y-5">
@@ -1043,4 +1044,45 @@ export default function UiDemo({ id }: { id: string }) {
     default:
       return <p className="text-sm text-muted-foreground">请选择一个组件。</p>;
   }
+}
+
+function SelectionDemo() {
+  const [selected, setSelected] = useState<number[]>([]);
+  return (
+    <div className="w-full max-w-md overflow-hidden rounded-md border">
+      <SelectionBar
+        selectedCount={selected.length}
+        totalCount={3}
+        onSelectAll={(value) => setSelected(value ? [1, 2, 3] : [])}
+        onClear={() => setSelected([])}
+        description="演示数据，仅展示选择和批量反馈。"
+      >
+        <Button
+          size="sm"
+          onClick={() => {
+            toast.success(`演示：已处理 ${selected.length} 项`);
+            setSelected([]);
+          }}
+        >
+          标为已处理
+        </Button>
+      </SelectionBar>
+      {[1, 2, 3].map((id) => (
+        <Label
+          key={id}
+          className="flex cursor-pointer items-center gap-3 border-b p-3 last:border-0"
+        >
+          <Checkbox
+            checked={selected.includes(id)}
+            onCheckedChange={(value) =>
+              setSelected((items) =>
+                value ? [...items, id] : items.filter((item) => item !== id),
+              )
+            }
+          />
+          演示通知 {id}
+        </Label>
+      ))}
+    </div>
+  );
 }
