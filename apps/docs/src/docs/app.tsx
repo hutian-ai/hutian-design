@@ -167,7 +167,12 @@ export default function DocsApp() {
           </Button>
           <a className="docs-brand" href="#/introduction">
             <span className="docs-brand-mark">
-              <img src={`${import.meta.env.BASE_URL}brand/hutian-mark.png`} width="26" height="26" alt="" />
+              <img
+                src={`${import.meta.env.BASE_URL}brand/hutian-mark.png`}
+                width="26"
+                height="26"
+                alt=""
+              />
             </span>
             <span>
               hutian<span className="font-normal text-faint"> / </span>design

@@ -2,7 +2,12 @@
 
 // Adapted from Beautiful UI ThinkingState, MIT © 2026 Shane Levine.
 // Source and changes: ./NOTICE.md. Status/content come from the caller, never a demo timer.
-import { useRef, useState, type PropsWithChildren, type ReactNode } from "react";
+import {
+  useRef,
+  useState,
+  type PropsWithChildren,
+  type ReactNode,
+} from "react";
 import { useScrollLock } from "@assistant-ui/react";
 import { Brain, ChevronDown } from "lucide-react";
 import { Button } from "../ui/button.js";
@@ -45,7 +50,10 @@ export default function ThinkingState({
           size="sm"
           className="h-auto min-h-6 w-fit max-w-full justify-start gap-2 rounded-none p-0 text-sm font-medium leading-5 text-muted-foreground has-[>svg]:px-0 hover:bg-transparent dark:hover:bg-transparent"
         >
-          <Brain aria-hidden="true" className={`size-4 shrink-0 ${active ? "motion-safe:animate-pulse" : ""}`} />
+          <Brain
+            aria-hidden="true"
+            className={`size-4 shrink-0 ${active ? "motion-safe:animate-pulse" : ""}`}
+          />
           <span className="min-w-0 text-left tabular-nums [overflow-wrap:anywhere] whitespace-normal">
             <span className="block">{label}</span>
             {summary ? (

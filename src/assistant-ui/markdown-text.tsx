@@ -57,11 +57,29 @@ export const MarkdownText = memo(MarkdownTextImpl);
 // Reuse its typography without replaying received text or requiring a part scope.
 export const ActivityMarkdown = memo(({ text }: { text: string }) => (
   <div className="aui-md">
-    <ReactMarkdown remarkPlugins={[remarkGfm]} components={{
-      ...defaultComponents,
-      code: ({ className, ...props }) => <code className={cn("font-mono text-[0.85em]", className)} {...props} />,
-      pre: ({ className, ...props }) => <pre className={cn("my-3 overflow-x-auto rounded-md border bg-muted/30 p-3 text-xs", className)} {...props} />,
-    }}>{text}</ReactMarkdown>
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        ...defaultComponents,
+        code: ({ className, ...props }) => (
+          <code
+            className={cn("font-mono text-[0.85em]", className)}
+            {...props}
+          />
+        ),
+        pre: ({ className, ...props }) => (
+          <pre
+            className={cn(
+              "my-3 overflow-x-auto rounded-md border bg-muted/30 p-3 text-xs",
+              className,
+            )}
+            {...props}
+          />
+        ),
+      }}
+    >
+      {text}
+    </ReactMarkdown>
   </div>
 ));
 
